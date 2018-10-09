@@ -256,9 +256,8 @@ declare module 'built-in' {
      * * gjs : 将生成的JS文件写入到主题文件中
      * * commonjs : 将EXML合并为一个 CommonJS 风格的文件
      * * commonjs2 : 将EXML合并为一个含有解析方法和皮肤定义的文件，且皮肤抽离为一份配置
-     * * json : 将每个EXML文件生成一份配置
      */
-    type EXML_Publish_Policy = "default" | "debug" | "contents" | "gjs" | "commonjs" | "commonjs2" | "json"
+    type EXML_Publish_Policy = "default" | "debug" | "contents" | "gjs" | "commonjs" | "commonjs2"
 
 
 
@@ -316,9 +315,9 @@ declare module 'built-in' {
 
         resourceConfigFiles: { filename: string, root: string }[];
 
-        nameSelector: (url: string) => string;
+        nameSelector: (url: string) => string
 
-        TM_Verbose: boolean;
+
     }
 
     export class ConvertResConfigFilePlugin implements plugins.Command {
@@ -336,16 +335,12 @@ declare module 'built-in' {
 
     }
 
-    type TextureMergerOptions = {
-        textureMergerRoot: string[];
-    }
-
     /**
      * 使用 TextureMerger 实现纹理自动合并，依赖 TextureMerger 1.7 以上的版本
      */
     export class TextureMergerPlugin implements plugins.Command {
 
-        constructor(options: TextureMergerOptions);
+        constructor();
 
     }
 
@@ -417,14 +412,4 @@ declare module 'built-in' {
         constructor(option: ZipPluginOptions);
     }
 
-    type MergeEuiJsonPluginOptions = {
-
-        mergeSelector?: (p: string) => string | null,
-
-        createConfig?: boolean
-    }
-    export class MergeEuiJsonPlugin implements plugins.Command {
-
-        constructor(option?: MergeEuiJsonPluginOptions);
-    }
 }
