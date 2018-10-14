@@ -53,20 +53,28 @@ class Main extends egret.DisplayObjectContainer {
         egret.lifecycle.onResume = () => {
             egret.ticker.resume();
         }
-        //inject the custom material parser
-        //注入自定义的素材解析器
-        let assetAdapter = new AssetAdapter();
-        egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
-        core.Core.run(this.stage);
-        core.LayerCenter.getInstance().addLayer(LayerEnum.BG, new core.Layer());
-        core.LayerCenter.getInstance().addLayer(LayerEnum.UI, new core.EUILayer());
-        core.LayerCenter.getInstance().addLayer(LayerEnum.POPUP, new core.Layer());
-        core.LayerCenter.getInstance().addLayer(LayerEnum.LOADING, new core.EUILayer());
-        core.LayerCenter.getInstance().addLayer(LayerEnum.TOP, new core.Layer());
-        this.runGame().catch(e => {
-            console.log(e);
-        });
+             fairygui.UIConfig.defaultFont = "宋体";
+     fairygui.UIConfig.verticalScrollBar = fairygui.UIPackage.getItemURL("Basic", "ScrollBar_VT");
+     fairygui.UIConfig.horizontalScrollBar = fairygui.UIPackage.getItemURL("Basic", "ScrollBar_HZ");
+     fairygui.UIConfig.popupMenu = fairygui.UIPackage.getItemURL("Basic", "PopupMenu");
+     fairygui.UIConfig.buttonSound = fairygui.UIPackage.getItemURL("Basic","click");
+     console.log(">>>>>>>"+fairygui.UIConfig.defaultFont)
+     
+     this.stage.addChild(fairygui.GRoot.inst.displayObject);
+        // //inject the custom material parser
+        // //注入自定义的素材解析器
+        // let assetAdapter = new AssetAdapter();
+        // egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
+        // egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
+        // core.Core.run(this.stage);
+        // core.LayerCenter.getInstance().addLayer(LayerEnum.BG, new core.Layer());
+        // core.LayerCenter.getInstance().addLayer(LayerEnum.UI, new core.EUILayer());
+        // core.LayerCenter.getInstance().addLayer(LayerEnum.POPUP, new core.Layer());
+        // core.LayerCenter.getInstance().addLayer(LayerEnum.LOADING, new core.EUILayer());
+        // core.LayerCenter.getInstance().addLayer(LayerEnum.TOP, new core.Layer());
+        // this.runGame().catch(e => {
+        //     console.log(e);
+        // });
     }
 
     private async runGame() {
